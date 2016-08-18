@@ -2,6 +2,7 @@ require 'thor'
 require 'text-table'
 require 'google_drive'
 require 'drive_env'
+require 'pry'
 
 module DriveEnv
   module Cli
@@ -19,6 +20,12 @@ module DriveEnv
         end
 
         puts table.to_s
+      end
+
+      desc 'pry SPREADSHEET_URL_OR_ALIAS', ''
+      def pry(url_or_alias)
+        ws = worksheet(url_or_alias)
+        binding.pry
       end
 
       desc 'to_env SPREADSHEET_URL_OR_ALIAS', ''
